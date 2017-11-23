@@ -1,72 +1,96 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - DuvitechSample</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--begin::Web font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <!--end::Web font -->
+    <!--begin::Base Styles -->
+    @RenderSection("Styles", required: false)
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/demo/demo5/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Base Styles -->
+    <link rel="shortcut icon" href="~/assets/demo/demo5/media/img/logo/favicon.ico" />
+
 </head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand">DuvitechSample</a>
+<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- begin::Header -->
+        <header class="m-grid__item		m-header " data-minimize="minimize" data-minimize-offset="200" data-minimize-mobile-offset="200">
+            <div class="m-header__top">
+                <div class="m-container m-container--responsive m-container--xxl m-container--full-height m-page__container">
+                    <div class="m-stack m-stack--ver m-stack--desktop">
+                        <!-- begin::Brand -->
+                        <div class="m-stack__item m-brand">
+                            <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
+                                <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                                    <a href="index.html" class="m-brand__logo-wrapper">
+                                        <img alt="" src="assets/demo/demo5/media/img/logo/logo.png" />
+                                    </a>
+                                </div>
+                                @await Html.PartialAsync("_QuickMenu")
+                            </div>
+                        </div>
+                        <!-- end::Brand -->
+                        <!-- begin::Topbar -->
+                        @await Html.PartialAsync("_TopBar")
+                        <!-- end::Topbar -->
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+            <div class="m-header__bottom">
+                <div class="m-container m-container--responsive m-container--xxl m-container--full-height m-page__container">
+                    <div class="m-stack m-stack--ver m-stack--desktop">
+                        <!-- begin::Horizontal Menu -->
+                        @await Html.PartialAsync("_MenuBar")
+                        <!-- end::Horizontal Menu -->
+                        <!--begin::Search-->
+                        @await  Html.PartialAsync("_Search")
+                        <!--end::Search-->
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
-    <div class="container body-content">
+        </header>
+        <!-- end::Header -->
+        <!-- begin::Body -->
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - DuvitechSample</p>
-        </footer>
+        <!-- end::Body -->
+        <!-- begin::Footer -->
+        @await Html.PartialAsync("_Footer")
+        <!-- end::Footer -->
     </div>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    <!-- end:: Page -->
+    <!-- begin::Quick Sidebar -->
+    @await Html.PartialAsync("_QuickSidebar")
+    <!-- end::Quick Sidebar -->
+    <!-- begin::Scroll Top -->
+    <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+        <i class="la la-arrow-up"></i>
+    </div>
+    <!-- end::Scroll Top -->			
+    <!--begin::Base Scripts -->
+    <script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="assets/demo/demo5/base/scripts.bundle.js" type="text/javascript"></script>
+    <!--end::Base Scripts -->
 
     @RenderSection("Scripts", required: false)
+
 </body>
+<!-- end::Body -->
 </html>
+
+
